@@ -1,7 +1,8 @@
 # ============================================
 # Stage 1: Build the web client
 # ============================================
-FROM node:24-alpine AS builder
+# Fork: the build output is platform independent, so build it natively once
+FROM --platform=$BUILDPLATFORM node:24-alpine AS builder
 
 RUN apk add --no-cache git python3 make g++
 
